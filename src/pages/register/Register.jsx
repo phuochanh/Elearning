@@ -74,22 +74,22 @@ export default function Register() {
     event.preventDefault();
 
     const result = await registerApi(state);
-    // localStorage.setItem(
-    //   "REGISTER_INFO_KEY",
-    //   JSON.stringify(result.data.content)
-    // );
-    console.log(result.data.content);
-    dispatch(setRegisterInfoAction(result.data.content));
+    localStorage.setItem(
+      "REGISTER_INFO_KEY",
+      JSON.stringify(result.data)
+    );
+    console.log(result.data);
+    dispatch(setRegisterInfoAction(result.data));
     
-    // if (registerUserState.nd) {
-    //   Swal.fire({
-    //     title: "Đăng ký thành công",
-    //     text: "Xin chào!!",
-    //     icon: "success",
-    //     timer: 2000,
-    //     showConfirmButton: false,
-    //   });
-    // }
+    if (registerUserState.nd) {
+      Swal.fire({
+        title: "Đăng ký thành công",
+        text: "Xin chào!!",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    }
 
     navigate("/login");
   };
