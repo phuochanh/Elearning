@@ -3,10 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./style.scss";
 import { fetchCourseCatalogApi } from "../../services/course";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserInfoAction } from "../../store/actions/userAction";
 
 export default function Header() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [courseState, setCourseState] = useState({});
+  const userState = useSelector((state) => state.userReducer);
+
+  const handleLogout = () => {
+    localStorage.removeItem("USER_INFO_KEY");
+    dispatch(setUserInfoAction(null));
+    navigate("/");
+  }
 
   useEffect(() => {
     getCourseCatalog();
@@ -105,7 +115,12 @@ export default function Header() {
           </ul>
         </div>
         <div className="ml-auto">
-          <button
+          {
+            userState.userInfo ? <>
+            <span className="mr-3">Hello {userState.userInfo.hoTen}</span>
+            <button className="btn btn-danger" onClick={handleLogout}>ĐĂNG XUẤT</button>
+            </> : <>
+            <button
             className="btn btn-outline-info my-2 my-sm-0 mr-2"
             type="sumit"
             onClick={() => navigate("/register")}
@@ -118,6 +133,9 @@ export default function Header() {
           >
             ĐĂNG NHẬP
           </button>
+            </>
+          }
+          
         </div>
       </div>
     </nav>
