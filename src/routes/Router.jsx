@@ -5,6 +5,7 @@ import HomeLayout from '../layouts/home/HomeLayout';
 import CourseDetailPage from '../pages/course-detail/CourseDetailPage';
 import HomePage from '../pages/home/HomePage';
 import Login from '../pages/login/Login';
+import Register from '../pages/register/Register';
 
 export default function Router() {
    const routing = useRoutes([
@@ -24,6 +25,10 @@ export default function Router() {
                 path: "/login",
                 element: <Login/>,
             },
+            {
+                path: "/register",
+                element: <Register/>,
+            }
         ],
     },
    ]);

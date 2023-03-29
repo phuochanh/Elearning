@@ -8,10 +8,19 @@ return axios({
         TokenCybersoft: TOKEN_CYBERSOFT,
     }
 })
-}
+};
 export const fetchCourseDetailApi = (id) => {
     return axios( {
         url: `${BASE_URL}/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${id}`,
+        method: "GET",
+        headers: {
+            TokenCybersoft: TOKEN_CYBERSOFT,
+        }
+    })
+};
+export const fetchCourseCatalogApi = () => {
+    return axios ({
+        url: `${BASE_URL}/QuanLyKhoaHoc/LayDanhMucKhoaHoc`,
         method: "GET",
         headers: {
             TokenCybersoft: TOKEN_CYBERSOFT,

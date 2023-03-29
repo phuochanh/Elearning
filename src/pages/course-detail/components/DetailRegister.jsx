@@ -1,48 +1,73 @@
-import React from 'react'
-import { Button} from 'antd';
+import React, { useEffect, useState } from "react";
+import { Button } from "antd";
+import { useParams } from "react-router-dom";
+import { fetchCourseDetailApi } from "../../../services/course";
+import "./style.scss";
+
 export default function DetailRegister() {
+  const [courseState, setCourseState] = useState({});
+
+  const params = useParams();
+
+  useEffect(() => {
+    getCourseDetail();
+  }, []);
+
+  const getCourseDetail = async () => {
+    const result = await fetchCourseDetailApi(params.id);
+    console.log(result);
+    setCourseState(result.data);
+  };
   return (
-    <div className="col-lg-4 col-md-5">
-    <img src="" alt="" />
-    <div>
-      <p>
-        <strong>500.000đ</strong>
+    <div className="col-lg-4 col-md-5 left">
+      <div className="image text-center">
+        <img className="pt-4" src={courseState.hinhAnh} alt="" />
+        <p>
+          <strong className="price text-center ">500.000đ</strong>
         </p>
-        <Button>ĐĂNG KÝ</Button>
-        <div className="row">
+      </div>
+
+      <div className="leftInfo">
+        <Button className="text-center ml-5">ĐĂNG KÝ</Button>
+        <div className="row leftInfoItem mt-4">
           <ul>
             <li>
-              <p>Ghi danh:
-                <span>10 học viên</span>
+              <p>
+                Ghi danh:
+                <span>{courseState.soLuongHocVien}</span>
               </p>
             </li>
             <li>
-              <p>Thời gian:
+              <p>
+                Thời gian:
                 <span>18 giờ</span>
               </p>
             </li>
             <li>
-              <p>Bài học:
+              <p>
+                Bài học:
                 <span>10</span>
               </p>
             </li>
             <li>
-              <p>Video:
+              <p>
+                Video:
                 <span>14</span>
               </p>
             </li>
             <li>
-              <p>Trình độ:
+              <p>
+                Trình độ:
                 <span>Người mới bắt đầu</span>
               </p>
             </li>
           </ul>
-          <hr style={{ width: "95%", alignItems: "center" }} />
+          <hr className="mr-5" style={{ width: "95%", alignItems: "center" }} />
           <form action="">
-            <input type="text" placeholder="Nhập mã" />
+            <input type="text" placeholder="Nhập mã"/>
           </form>
         </div>
+      </div>
     </div>
-  </div>
-  )
+  );
 }

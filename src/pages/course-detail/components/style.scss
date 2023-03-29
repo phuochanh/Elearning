@@ -1,0 +1,36 @@
+.image {
+    img{
+        width: 80%,
+    }
+    p{
+        text-align: right;
+        font-size: 20px;
+        padding-top: 30px;
+    }
+}
+.left{
+    box-shadow: 1px 1px 10px 4px #dadada;
+    justify-content: center;
+    margin-bottom: 15px;
+    padding: 10px 30px;
+    height: 900px;
+    
+    .leftInfo{
+        
+        button {
+            width: 80%;
+        }
+        .leftInfoItem{
+            align-items: left;
+            padding-left: 50px;
+            hr{
+                margin-top: -15px;
+            }
+            form{
+                input{
+                    
+                }
+            }
+        }
+    }
+}
