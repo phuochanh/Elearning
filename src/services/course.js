@@ -26,4 +26,13 @@ export const fetchCourseCatalogApi = () => {
             TokenCybersoft: TOKEN_CYBERSOFT,
         }
     })
+};
+export const fetchRegisterCourseApi = () => {
+    return axios ({
+        url: `${BASE_URL}/QuanLyKhoaHoc/DangKyKhoaHoc`,
+        method: "POST",
+        headers: {
+            TokenCybersoft: TOKEN_CYBERSOFT,
+        }
+    })
 }

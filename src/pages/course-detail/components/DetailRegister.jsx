@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "antd";
 import { useParams } from "react-router-dom";
-import { fetchCourseDetailApi } from "../../../services/course";
+import { fetchCourseDetailApi, fetchRegisterCourseApi } from "../../../services/course";
 import "./style.scss";
 
 export default function DetailRegister() {
   const [courseState, setCourseState] = useState({});
+  const [registerState, setRegisterState] = useState({});
 
   const params = useParams();
 
@@ -18,6 +19,10 @@ export default function DetailRegister() {
     console.log(result);
     setCourseState(result.data);
   };
+
+  // const getRegisterCourse = async () => {
+  //   const respone = await fetchRegisterCourseApi();
+  // }
   return (
     <div className="col-lg-4 col-md-5 left">
       <div className="image text-center">
