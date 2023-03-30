@@ -9,14 +9,14 @@ export default function CourseDetailPage() {
   return (
     <div className="py-5 ">
       <div className="ml-5 mt-5">
-        <div className="row">
+        <div className="row mr-5">
           <div className="col-lg-8 col-md-7 course-Detail">
             <h4>LẬP TRÌNH FRONT-END CHUYÊN NGHIỆP</h4>
-            <DetailIntroduce/>
-            <Discrible/>
-            <DetailItem/>
+            <DetailIntroduce />
+            <Discrible />
+            <DetailItem />
           </div>
-          <DetailRegister/>
+          <DetailRegister />
         </div>
       </div>
       <div></div>

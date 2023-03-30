@@ -9,6 +9,8 @@ import UserManagement from "../pages/admin/UserManagement";
 import CourseDetailPage from "../pages/course-detail/CourseDetailPage";
 import HomePage from "../pages/home/HomePage";
 import Login from "../pages/login/Login";
+import Register from "../pages/register/Register";
+import NoAuthGuard from "../guards/NoAuthGuard";
 
 export default function Router() {
   const routing = useRoutes([
