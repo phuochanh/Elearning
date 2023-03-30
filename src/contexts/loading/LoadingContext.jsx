@@ -20,9 +20,7 @@ const LoadingProvider = (props) => {
 
   return (
     <LoadingContext.Provider value={[state, setState]}>
-      {state.isLoading && (
-          <Spin size="large" />
-      )}
+      {state.isLoading && <Spin size="large" />}
       {props.children}
     </LoadingContext.Provider>
   );
