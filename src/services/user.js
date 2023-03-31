@@ -12,7 +12,7 @@ export const loginApi = (information) => {
 };
 export const registerApi = (information) => {
     return axios ({
-        url: `${BASE_URL}/QuanLyNguoiDung/DangDangKy`,
+        url: `${BASE_URL}/QuanLyNguoiDung/DangKy`,
         method: "POST",
         data: information,
         headers: {

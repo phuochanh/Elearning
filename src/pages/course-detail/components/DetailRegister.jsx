@@ -16,12 +16,13 @@ export default function DetailRegister() {
 
   const getCourseDetail = async () => {
     const result = await fetchCourseDetailApi(params.id);
-    console.log(result);
+    // console.log(result);
     setCourseState(result.data);
   };
 
   // const getRegisterCourse = async () => {
   //   const respone = await fetchRegisterCourseApi();
+  //   setRegisterState (respone.data);
   // }
   return (
     <div className="col-lg-4 col-md-5 left">

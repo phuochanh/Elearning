@@ -9,7 +9,7 @@ import { setUserInfoAction } from "../../store/actions/userAction";
 export default function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [courseState, setCourseState] = useState({});
+  const [courseState, setCourseState] = useState([]);
   const userState = useSelector((state) => state.userReducer);
 
   const handleLogout = () => {
@@ -24,13 +24,15 @@ export default function Header() {
 
   const getCourseCatalog = async () => {
     const result = await fetchCourseCatalogApi();
-    console.log(result);
     setCourseState(result.data);
   };
 
  const renderContent = () => {
   return courseState.map((element) => {
-    return <p key={element.maDanhMuc}>{element.tenDanhMuc}</p>;
+    return <p key={element.maDanhMuc}>
+      <Link>{element.tenDanhMuc}</Link>
+      </p>;
+
   });
 };
 
@@ -38,7 +40,8 @@ export default function Header() {
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          <img src="./img/logo.png" width={240} height={70} />
+          <img src="./img/logo.png" width={240} height={70}/>
+          
         </a>
         <button
           className="navbar-toggler"
@@ -67,20 +70,10 @@ export default function Header() {
 
             <li className="dropdown nav-item active pl-5 pt-2" >
               <div className="dropdown-toggle" data-toggle="dropdown">
-                <strong>DANH MỤC</strong>
+                <strong className="catalog">DANH MỤC</strong>
               </div>
               <div className="dropdown-menu p-3 catalog">
-                {/* {renderContent()} */}
-                {/* <a className="dropdown-item" href="#">
-                  {courseState.tenDanhMuc}
-                </a>
-                <a className="dropdown-item" href="#">
-                  Menu item 2
-                </a>
-                <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#">
-                  Menu 3 ...
-                </a> */}
+                {renderContent()}
               </div>
             </li>
           

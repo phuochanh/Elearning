@@ -13,7 +13,6 @@ export default function DetailIntroduce() {
 
   const getCourseDetail = async() => {
     const result = await fetchCourseDetailApi(params.id);
-    console.log(result.data); 
     setCourseDetailState(result.data);
   }
   return (
