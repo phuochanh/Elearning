@@ -1,22 +1,75 @@
-.infoPage{
-    .title{
-        background-color: #ffd60a;
-        color: white;
-        height: 150px;
-        padding-top: 40px;
-        p{
-            font-size: 14px;
-            margin-top: -10px;
-        }
+.infoPage {
+  .title {
+    background-color: #ffd60a;
+    color: white;
+    height: 150px;
+    padding-top: 40px;
+    p {
+      font-size: 14px;
+      margin-top: -10px;
     }
-    .infoPageContent{
-.infoLeft{
-    text-align: center;
-    img{
+  }
+  .infoPageContent {
+    padding: 50px;
+    .infoLeft {
+      text-align: center;
+      img {
         width: 200px;
         height: 200px;
         border-radius: 50%;
+      }
     }
-}
-    }
+    .infoRight{
+            .skillAll{
+                .skillBtnHtml .progress-bar, .skillBtnHtml button {
+                    background-color: #f9ca9a;
+                }
+                .skillBtnCss .progress-bar, .skillBtnCss button {
+                    background-color: #f8bebb;
+                }
+                .skillBtnJs .progress-bar, .skillBtnJs button {
+                    background-color: #f0cc6b;
+                }
+                .skillBtnReact .progress-bar, .skillBtnReact button {
+                    background-color: #113d3c;
+                }
+                .mySkill{
+                    display: flex;
+                    color: white;
+                    
+                    .skillBtnCustom {
+                        width: 60px;
+                        height: 45px;
+                        color: var(--colorWhite);
+                        border-radius: 8px;
+                        border: none;
+                        text-transform: uppercase;
+                        margin-right: 5px;
+                    }
+                    .progress{
+                        width: 80%;
+                        margin-left: 30px;
+                        margin-top: 15px;
+                    }
+                }
+            }
+            .timeStudy{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                .timeStudyItem{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 15px;
+                    border-radius: 20px;
+                    background: #41b294;
+                    color: white;
+                }
+            }
+        }
+       
+        
+    
+  }
 }
