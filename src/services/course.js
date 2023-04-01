@@ -1,48 +1,35 @@
 import axios from "axios"
-import { BASE_URL, TOKEN_CYBERSOFT } from "../constants"
+import { BASE_URL, MA_NHOM, TOKEN_CYBERSOFT } from "../constants"
+import { axiosRequest } from "../configs/axios.config";
+
 export const fetchCourseApi = () => {
-return axios({
-    url: `${BASE_URL}/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01`,
+return axiosRequest({
+    url: `/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01`,
     method: "GET",
-    headers: {
-        TokenCybersoft: TOKEN_CYBERSOFT,
-    }
 })
 };
 export const fetchCourseDetailApi = (id) => {
-    return axios( {
-        url: `${BASE_URL}/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${id}`,
+    return axiosRequest( {
+        url: `/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${id}`,
         method: "GET",
-        headers: {
-            TokenCybersoft: TOKEN_CYBERSOFT,
-        }
     })
 };
 export const fetchCourseCatalogApi = () => {
-    return axios ({
-        url: `${BASE_URL}/QuanLyKhoaHoc/LayDanhMucKhoaHoc`,
+    return axiosRequest ({
+        url: `/QuanLyKhoaHoc/LayDanhMucKhoaHoc`,
         method: "GET",
-        headers: {
-            TokenCybersoft: TOKEN_CYBERSOFT,
-        }
     })
 };
 export const fetchRegisterCourseApi = () => {
-    return axios ({
-        url: `${BASE_URL}/QuanLyKhoaHoc/DangKyKhoaHoc`,
+    return axiosRequest ({
+        url: `/QuanLyKhoaHoc/DangKyKhoaHoc`,
         method: "POST",
-        headers: {
-            TokenCybersoft: TOKEN_CYBERSOFT,
-        }
     })
 };
 
 export const fetchCourseByCatagogyApi =() => {
-return axios ({
-    url: `${BASE_URL}/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=TuDuy&MaNhom=GP01`,
+return axiosRequest ({
+    url: `/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=TuDuy&MaNhom=${MA_NHOM}`,
     method: "GET",
-    headers: {
-        TokenCybersoft: TOKEN_CYBERSOFT,
-    }
 })
 }

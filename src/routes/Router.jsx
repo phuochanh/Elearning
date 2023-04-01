@@ -7,6 +7,7 @@ import CourseDetailPage from '../pages/course-detail/CourseDetailPage';
 import HomePage from '../pages/home/HomePage';
 import Login from '../pages/login/Login';
 import Register from '../pages/register/Register';
+import UserForm from '../pages/use-form/UserForm';
 import UserInfo from '../pages/user-info/UserInfo';
 
 export default function Router() {
@@ -39,6 +40,10 @@ export default function Router() {
             {
                 path: "/user-info",
                 element: <UserInfo/>,
+            },
+            {
+                path: "/user-form",
+                element: <UserForm/>,
             },
         ],
     },
