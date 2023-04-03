@@ -16,6 +16,7 @@ export default function CourseList() {
 
   const getCourseList = async () => {
     const result = await fetchCourseApi();
+    console.log(result)
     const topViewed = result.data.filter(course => course.luotXem >= 100)
     
       setCourseList(topViewed.slice(0,4));

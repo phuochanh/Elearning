@@ -1,18 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "antd";
 import { useParams } from "react-router-dom";
-import { fetchCourseDetailApi, fetchRegisterCourseApi } from "../../../services/course";
+import { fetchCancelRegisterApi, fetchCourseDetailApi, fetchCourseInfoApi, fetchRegisterCourseApi } from "../../../services/course";
 import "./style.scss";
+import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 export default function DetailRegister() {
   const [courseState, setCourseState] = useState({});
-  const [registerState, setRegisterState] = useState({});
+  const [auseState, setState] = useState ( {})
+  const userState = useSelector((state) => state.userReducer);
+  
+  const [registerState, setRegisterState] = useState({
+    maKhoaHoc: "",
+    taiKhoan: "",
+  });
+  const[cancelState, setCancelState] = useState({
+    maKhoaHoc: "",
+    taiKhoan: "",
+  })
 
   const params = useParams();
 
   useEffect(() => {
     getCourseDetail();
+    geta()
   }, []);
+
+  const geta = async () => {
+    
+    const a = await fetchCourseInfoApi (params.id);
+    console.log(a)
+    setState(a.data)
+
+    if(a.data.lstHocVien.some(item => item.taiKhoan == userState.userInfo.taiKhoan)){
+      console.log("1");
+      
+    }
+  }
 
   const getCourseDetail = async () => {
     const result = await fetchCourseDetailApi(params.id);
@@ -20,10 +45,34 @@ export default function DetailRegister() {
     setCourseState(result.data);
   };
 
-  // const getRegisterCourse = async () => {
-  //   const respone = await fetchRegisterCourseApi();
-  //   setRegisterState (respone.data);
-  // }
+  const getRegisterCourse = async (data) => {
+    const respone = await fetchRegisterCourseApi(data);
+    console.log(respone);
+    setRegisterState (respone.data);
+    Swal.fire({
+      title: "Đăng ký khóa học thành công!",
+      text: "Hoàn tất!!",
+      icon: "success",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+  }
+
+  const getCancelRegister = async (data) => {
+    const res = await fetchCancelRegisterApi (data);
+    console.log(res);
+    setCancelState(res.data);
+    Swal.fire({
+      title: "Hủy khóa học thành công!",
+      text: "Hoàn tất!!",
+      icon: "success",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+  }
+  
+
+
   return (
     <div className="col-lg-4 col-md-5 left">
       <div className="image text-center">
@@ -34,7 +83,14 @@ export default function DetailRegister() {
       </div>
 
       <div className="leftInfo">
-        <Button className="text-center ml-5">ĐĂNG KÝ</Button>
+        
+        <div className="d-flex">
+        {}
+        <button onClick={() => getRegisterCourse(registerState)} className="text-center ml-5 btn btn-success">ĐĂNG KÝ</button>
+        <button onClick={() => getCancelRegister(cancelState)} className="text-center ml-5 btn btn-danger">HỦY</button>
+
+        </div>
+        
         <div className="row leftInfoItem mt-4">
           <ul>
             <li>

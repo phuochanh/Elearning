@@ -20,16 +20,36 @@ export const fetchCourseCatalogApi = () => {
         method: "GET",
     })
 };
-export const fetchRegisterCourseApi = () => {
+export const fetchRegisterCourseApi = (data) => {
     return axiosRequest ({
         url: `/QuanLyKhoaHoc/DangKyKhoaHoc`,
         method: "POST",
+        data: data,
     })
 };
+
+export const fetchCancelRegisterApi = (data) => {
+    return axiosRequest ({
+        url: `/QuanLyKhoaHoc/HuyGhiDanh`,
+        method: "POST",
+        data: data,
+    })
+    
+}
 
 export const fetchCourseByCatagogyApi =() => {
 return axiosRequest ({
     url: `/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=TuDuy&MaNhom=${MA_NHOM}`,
     method: "GET",
 })
+};
+
+export const fetchCourseInfoApi = (id) => {
+    return axiosRequest ({
+        url: `/QuanLyKhoaHoc/LayThongTinHocVienKhoaHoc?maKhoaHoc=${id}`,
+        method: "GET",
+    })
+    
 }
+
+
