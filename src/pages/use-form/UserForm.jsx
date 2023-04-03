@@ -4,15 +4,22 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./styleUserForm.scss";
+import { fetchUpdateUserInfoApi } from "services/user";
 
 export default function UserForm() {
   const navigate = useNavigate();
+  const [userState, setUserState] = useState([]);
+  
   const [typeUser, setTypeUser] = useState([]);
-  useEffect(() => {
 
+  useEffect(() => {
+    updateForm();
   }, []);
-  const getUpdateUserInfo = async () => {
-    
+  const updateForm = async (data) => {
+    const result = await fetchUpdateUserInfoApi(data);
+    console.log(result.data);
+    setUserState(result.data)
+
   }
 
   return (
@@ -99,7 +106,7 @@ export default function UserForm() {
             </div>
             <div className="text-right">
               <Space wrap>
-                <Button htmlType="submit" type="primary" size="large">
+                <Button  htmlType="submit" type="primary" size="large">
                   Cập nhật
                 </Button>
                 <button className="btn btn-danger">Đóng</button>
