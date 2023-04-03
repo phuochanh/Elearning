@@ -52,4 +52,12 @@ export const fetchCourseInfoApi = (id) => {
     
 }
 
+// export const fetchtestApi = (data) => {
+//     return axiosRequest ({
+//         url: `QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh`,
+//         method: "POST",
+//         data: data,
+//     })
+// }
+
 
