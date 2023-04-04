@@ -1,21 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Button, Form, Input, Select, notification } from "antd";
 import {
-  AutoComplete,
-  Button,
-  Cascader,
-  Checkbox,
-  Col,
-  Form,
-  Input,
-  InputNumber,
-  Row,
-  Select,
-  notification,
-} from "antd";
-import { registerAdminApi } from "../../services/user";
-import { useNavigate } from "react-router-dom";
-
-const { Option } = Select;
+  fetchUpdateUserInfoApi,
+  fetchUserAdminApi,
+  registerAdminApi,
+} from "../../services/user";
+import { useNavigate, useParams } from "react-router-dom";
+import { MA_NHOM } from "../../constants";
 
 const formItemLayout = {
   labelCol: {
@@ -51,14 +42,55 @@ export default function UserFormAmin() {
   const [form] = Form.useForm();
   const [name, setName] = useState("");
   const navigate = useNavigate();
+  const params = useParams();
 
+  useEffect(() => {
+    getUserDetail();
+  }, [params.taiKhoan]);
+
+  const getUserDetail = async () => {
+    let result;
+    try {
+      result = await fetchUserAdminApi(params.taiKhoan);
+    } catch ({ response }) {
+      notification.error({
+        message: response.data || " Lỗi kết nối dữ liệu !",
+      });
+    }
+    console.log(result.data);
+    const UserResult = result.data.filter((ele) => {
+      return ele.taiKhoan === params.taiKhoan;
+    });
+    console.log(UserResult);
+    const { email, hoTen, taiKhoan, matKhau, maLoaiNguoiDung, soDt } =
+      UserResult[0];
+
+    form.setFieldsValue({
+      email: email,
+      hoTen: hoTen,
+      taiKhoan: taiKhoan,
+      matKhau: matKhau,
+      maNhom: MA_NHOM,
+      maLoaiNguoiDung: maLoaiNguoiDung,
+      soDT: soDt,
+    });
+  };
   const onFinish = (values) => {
     try {
-      registerAdminApi(values);
-      notification.success({
-        message: "Thêm tài khoản thành công !",
-      });
-      navigate("/admin/user-management");
+      if (params.taiKhoan) {
+        fetchUpdateUserInfoApi(values);
+        notification.success({
+          message: "Cập nhật tài khoản thành công !",
+        });
+        navigate("/admin/user-management");
+      } else {
+        registerAdminApi(values);
+
+        notification.success({
+          message: "Thêm tài khoản thành công !",
+        });
+        navigate("/admin/user-management");
+      }
     } catch ({ response }) {
       notification.error({
         message: response.data || "Không thể thêm được tài khoản !",
@@ -112,8 +144,13 @@ export default function UserFormAmin() {
       name="register"
       onFinish={onFinish}
       initialValues={{
-        residence: ["zhejiang", "hangzhou", "xihu"],
-        prefix: "86",
+        email: "",
+        hoTen: "",
+        taiKhoan: "",
+        matKhau: "",
+        maNhom: "",
+        maLoaiNguoiDung: "",
+        soDT: "",
       }}
       style={{
         maxWidth: 600,

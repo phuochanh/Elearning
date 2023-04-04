@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Space, Table, Tag, Button, notification, Modal } from "antd";
+import { Table, Button, notification, Modal, Input } from "antd";
 import { useCourseList } from "../../hooks/useCourseList";
 import "./style.scss";
 
-import {
-  CloseOutlined,
-  EditOutlined,
-  CalendarOutlined,
-  FormOutlined,
-} from "@ant-design/icons";
+import { CloseOutlined, EditOutlined, SearchOutlined } from "@ant-design/icons";
 import { deleteCourseApi } from "../../services/course";
 import { useNavigate } from "react-router";
+import { Empty } from "antd";
+
 export default function ElearningManagement() {
   const courseList = useCourseList();
   const navigate = useNavigate();
-  const { reload, setReload } = useState(false);
-  useEffect(() => {}, [reload]);
+  const [key, setKey] = useState("");
+
+  const filteredList = key
+    ? courseList.filter((ele) =>
+        ele.tenKhoaHoc.toLowerCase().includes(key.toLowerCase())
+      )
+    : courseList;
+
   const deleteCourse = async (maKhoaHoc) => {
     try {
       await deleteCourseApi(maKhoaHoc);
       notification.success({
         message: "Xóa thành công ",
       });
-      setReload(true);
     } catch ({ response }) {
       notification.error({
         message: response.data || "Error deleting!",
@@ -35,6 +37,7 @@ export default function ElearningManagement() {
       onOk: () => deleteCourse(maKhoaHoc),
     });
   };
+
   const columns = [
     {
       title: "Tên khóa học",
@@ -95,7 +98,13 @@ export default function ElearningManagement() {
       >
         Thêm khóa học
       </Button>
-      <Table columns={columns} dataSource={courseList} />
+      <Input
+        prefix={<SearchOutlined />}
+        placeholder="Tìm kiếm..."
+        onChange={(e) => setKey(e.target.value)}
+      />
+
+      <Table columns={columns} dataSource={filteredList} />
     </div>
   );
 }

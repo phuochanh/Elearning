@@ -60,8 +60,16 @@ export const AdminLayout = () => {
             height: 32,
             margin: 16,
             background: "rgba(255, 255, 255, 0.2)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            cursor: "pointer",
           }}
-        />
+          onClick={() => navigate("/")}
+        >
+          Trang chủ
+        </div>
         <Menu
           theme="dark"
           defaultSelectedKeys={["1"]}

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { axiosRequest } from "../configs/axios.config";
-import { BASE_URL, TOKEN_CYBERSOFT } from "../constants";
+import { MA_NHOM } from "../constants";
+
 export const fetchCourseApi = () => {
   return axiosRequest({
     url: `/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01`,
@@ -74,5 +75,12 @@ export const editCourseApi = (data) => {
     url: `QuanLyKhoaHoc/CapNhatKhoaHoc`,
     method: "PUT",
     data: data,
+  });
+};
+
+export const searchCourseAdminApi = (key) => {
+  return axiosRequest({
+    url: `/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${key}&MaNhom=${MA_NHOM}`,
+    method: "GET",
   });
 };

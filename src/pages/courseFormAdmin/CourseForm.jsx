@@ -21,7 +21,7 @@ import { useCatalogList } from "../../hooks/useCatalogList";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "antd/es/form/Form";
-import moment from "moment";
+
 export default function CourseForm() {
   const [imagePreview, setImagePreview] = useState();
   const [file, setFile] = useState();
@@ -44,10 +44,8 @@ export default function CourseForm() {
   };
 
   useEffect(() => {
-    if (params.maKhoaHoc) {
-      getCourseDetail();
-    }
-  }, [params.movieId]);
+    getCourseDetail();
+  }, [params.maKhoaHoc]);
 
   const getCourseDetail = async () => {
     let result;
@@ -102,22 +100,22 @@ export default function CourseForm() {
       ngayTao: values.ngayTao,
       maDanhMucKhoaHoc: values.maDanhMucKhoaHoc,
       taiKhoanNguoiTao: values.taiKhoanNguoiTao,
-      hinhAnh: file ? file.name : "xxx",
+      hinhAnh: file ? file.name : "",
     };
+    console.log(data);
 
     const formData = new FormData();
-    formData.append("maKhoaHoc", values.maKhoaHoc);
-    formData.append("tenKhoaHoc", values.tenKhoaHoc);
-    formData.append("biDanh", values.biDanh);
-    formData.append("moTa", values.moTa);
-    formData.append("luotXem", Number(values.luotXem));
-    formData.append("danhGia", Number(values.danhGia));
-    formData.append("maNhom", values.maNhom);
-    formData.append("ngayTao", values.ngayTao);
-    formData.append("maDanhMucKhoaHoc", values.maDanhMucKhoaHoc);
-    formData.append("taiKhoanNguoiTao", values.taiKhoanNguoiTao);
+    formData.append("maKhoaHoc", data.maKhoaHoc);
+    formData.append("tenKhoaHoc", data.tenKhoaHoc);
+    formData.append("biDanh", data.biDanh);
+    formData.append("moTa", data.moTa);
+    formData.append("luotXem", data.luotXem);
+    formData.append("danhGia", data.danhGia);
+    formData.append("maNhom", data.maNhom);
+    formData.append("ngayTao", data.ngayTao);
+    formData.append("maDanhMucKhoaHoc", data.maDanhMucKhoaHoc);
+    formData.append("taiKhoanNguoiTao", data.taiKhoanNguoiTao);
     file && formData.append("hinhAnh", file, file.name);
-    console.log(values.ngayTao);
 
     try {
       if (params.maKhoaHoc) {
@@ -234,7 +232,7 @@ export default function CourseForm() {
         </Select>
       </Form.Item>
       <Form.Item label="Ngày tạo" name="ngayTao">
-        <DatePicker defaultValue={moment()} />
+        <DatePicker />
       </Form.Item>
       <Form.Item label="Danh mục khóa học" name="maDanhMucKhoaHoc">
         <Select>

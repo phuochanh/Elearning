@@ -68,6 +68,10 @@ export default function Router() {
               element: <UserManagement />,
             },
             {
+              path: "/admin/user-management/edit/:taiKhoan",
+              element: <UserFormAmin />,
+            },
+            {
               path: "/admin/user-management/add",
               element: <UserFormAmin />,
             },
