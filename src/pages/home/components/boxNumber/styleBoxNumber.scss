@@ -1,0 +1,16 @@
+.number {
+  text-align: center;
+  background-color: #f0f8ff;
+  .boxNumber {
+    .imgIcon {
+      width: 80px;
+      height: 80px;
+    }
+    .textNumber {
+      span {
+        font-size: 50px;
+        color: #41b294;
+      }
+    }
+  }
+}

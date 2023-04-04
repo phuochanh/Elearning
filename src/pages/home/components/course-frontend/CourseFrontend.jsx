@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchCourseApi } from "../../../../services/course";
-import "./CourseList.scss";
 import { Button } from "antd";
+import "../course-list/CourseList.scss";
 
-export default function CourseList() {
+export default function CourseFrontend() {
   const navigate = useNavigate();
 
   const [courseList, setCourseList] = useState([]);
@@ -15,8 +15,10 @@ export default function CourseList() {
 
   const getCourseList = async () => {
     const result = await fetchCourseApi();
-    console.log(result);
-    const topViewed = result.data.filter((course) => course.luotXem >= 100);
+    // console.log(result)
+    const topViewed = result.data.filter(
+      (course) => course.danhMucKhoaHoc.maDanhMucKhoahoc == "FrontEnd"
+    );
 
     setCourseList(topViewed.slice(0, 4));
   };
@@ -63,9 +65,10 @@ export default function CourseList() {
                     <sup>đ</sup>
                   </p>
                 </div>
+
                 <button
-                  onClick={() => navigate(/course-detail/`${ele.maKhoaHoc}`)}
-                  className="btn btn-success movieDetail "
+                  onClick={() => navigate(`/course-detail/${ele.maKhoaHoc}`)}
+                  className="btn btn-success movieDetail"
                 >
                   Xem chi tiết
                 </button>
@@ -79,11 +82,10 @@ export default function CourseList() {
   return (
     <div className="ml-5 my-5">
       <div>
-        <Button size="large" type="primary" danger className="mr-2">
-          Khóa học phổ biến
+        <Button size="large" danger className="mr-2">
+          Khóa học Front End React Js
         </Button>
       </div>
-
       <div className="row mt-2 ml-4 mr-4">{renderCourseList()}</div>
     </div>
   );

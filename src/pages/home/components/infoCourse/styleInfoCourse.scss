@@ -1,0 +1,37 @@
+.infoCourseBox {
+  padding: 50px 0;
+  font-size: 1rem;
+  .infoCourseHome {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    color: white;
+    .infoItemHome {
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+      .infoItemContent {
+        span {
+          margin-left: 5px;
+        }
+      }
+    }
+    .infoLargeItem {
+      grid-row: 1 / span 2;
+      background-color: #41b294;
+      background-image: url(../../../../../public/img/pic1.png);
+      background-position: 100% 100%;
+      background-size: 50%;
+      background-repeat: no-repeat;
+    }
+    .infoSmallItemA {
+      background-color: #f6ba35;
+    }
+    .infoSmallItemB {
+      background-color: #5c8295;
+    }
+    .infoSmallItemC {
+      background-color: #63c0a8;
+    }
+  }
+}
