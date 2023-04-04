@@ -9,6 +9,7 @@ import Login from 'pages/login/Login';
 import Register from 'pages/register/Register';
 import UserForm from 'pages/use-form/UserForm';
 import UserInfo from 'pages/user-info/UserInfo';
+import CourseCatalory from 'pages/course-catalory/CourseCatalory';
 
 export default function Router() {
    const routing = useRoutes([
@@ -45,6 +46,11 @@ export default function Router() {
                 path: "/user-form",
                 element: <UserForm/>,
             },
+            {
+                path: "/course-catalory",
+                element: <CourseCatalory/>,
+                
+            }
         ],
     },
    ]);

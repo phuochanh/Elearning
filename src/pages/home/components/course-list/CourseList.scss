@@ -1,72 +1,65 @@
-.courseList{
-p{
+.courseList {
+  p {
     width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 25px;
     -webkit-line-clamp: 2;
-    // height: 75px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     color: black;
-}
-a{text-decoration: none;}
-.movie-card{
+  }
+  a {
+    text-decoration: none;
+  }
+  .movie-card {
     box-shadow: 1px 1px 10px 4px #dadada;
     justify-content: center;
     position: relative;
-    .stickerCard{
-        display: inline-block;
-    position: absolute;
-    z-index: 10;
-    top: 138px;
-    left: 0;
-    padding: 0 10px;
-    color: white;
-    background-color: #41b294;
+    .stickerCard {
+      display: inline-block;
+      position: absolute;
+      z-index: 10;
+      top: 138px;
+      left: 0;
+      padding: 0 10px;
+      color: white;
+      background-color: #41b294;
+      white-space: nowrap;
+      width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .card-body{
-        .card-title{
-            white-space: nowrap; 
-            width: 200px; 
-            overflow: hidden;
-            text-overflow: ellipsis; 
+    .card-body {
+      .movieDetail {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+      }
+      .cardIcon {
+        position: absolute;
+        bottom: 65px;
+        .card1 {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
         }
-        .movieDetail{
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
+      }
+      .price {
+        position: absolute;
+        bottom: -2px;
+        padding-top: 10px;
+        .price1 {
+          margin-bottom: -10px;
         }
-        .cardIcon{
-            position: absolute;
-            bottom: 65px;
-            .card1{
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-            }
-        }
-        .price{
-            position: absolute;
-            bottom: -2px;
-            padding-top: 10px;
-            .price1{
-                margin-bottom: -10px;
-            }
-            
-
-        }
-        hr{
-            width: 100%;
-            border: 0,1px solid rgb(115, 115, 115);
-            position: absolute;
-            bottom: 42px;
-            left: 0;
-        }
-       
+      }
+      hr {
+        width: 100%;
+        border: 0, 1px solid rgb(115, 115, 115);
+        position: absolute;
+        bottom: 42px;
+        left: 0;
+      }
     }
-        
-    
-}
-
+  }
 }
