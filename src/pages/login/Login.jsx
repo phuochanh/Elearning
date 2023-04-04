@@ -7,7 +7,7 @@ import "./styleLogin.css";
 import { loginApi } from "../../services/user";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfoAction } from "../../store/actions/userAction";
-import { Swal } from "sweetalert2";
+import Swal from "sweetalert2";
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

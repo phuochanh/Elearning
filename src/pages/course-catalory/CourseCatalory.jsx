@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Button } from "antd";
 import "./styleCourseCatalory.scss";
 import { fetchCourseByCatagogyApi } from "services/course";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function CourseCatalory() {
+   const params = useParams();
     const navigate = useNavigate();
   const [astate, setState] = useState([]);
 
@@ -13,10 +14,16 @@ export default function CourseCatalory() {
   }, []);
 
   const getCourseCatalory = async () => {
-    const result = await fetchCourseByCatagogyApi();
+    const result = await fetchCourseByCatagogyApi(params.id);
     console.log(result.data);
+   
     setState(result.data);
   };
+
+//   const a = (id) => {
+// if()
+//   }
+
   const renderCourseCatalory = () => {
     return astate.map((ele) => {
         return (<div className="col-md-6 col-xl-3 mt-4 courseList" key={ele.maKhoaHoc}>
@@ -62,8 +69,8 @@ export default function CourseCatalory() {
         <p>HÃY CHỌN KHÓA HỌC MONG MUỐN !!!</p>
       </div>
       <div className="mt-5 ml-5">
-        <Button>Tư duy lập trình</Button>
-        <div className="row mt-2 ml-4 mr-4">
+        <Button>{astate.tenDanhMucKhoaHoc}</Button>
+        <div className="row mt-2 ml-1 mr-4">
           {renderCourseCatalory()}
         </div>
       </div>
