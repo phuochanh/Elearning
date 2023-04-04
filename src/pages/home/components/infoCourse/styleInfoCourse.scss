@@ -10,6 +10,11 @@
       position: relative;
       overflow: hidden;
       padding: 20px;
+      .infoItemContent{
+        span{
+          margin-left: 5px;
+        }
+      }
     }
     .infoLargeItem {
         grid-row: 1/span 2;
@@ -29,4 +34,6 @@
         background-color: #63c0a8;
     }
   }
+
 }
+
