@@ -5,7 +5,6 @@
     text-overflow: ellipsis;
     line-height: 25px;
     -webkit-line-clamp: 2;
-    // height: 75px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     color: black;
@@ -13,59 +12,54 @@
   a {
     text-decoration: none;
   }
-}
-a {
-  text-decoration: none;
-}
-.movie-card {
-  box-shadow: 1px 1px 10px 4px #dadada;
-  justify-content: center;
-  position: relative;
-  .stickerCard {
-    display: inline-block;
-    position: absolute;
-    z-index: 10;
-    top: 138px;
-    left: 0;
-    padding: 0 10px;
-    color: white;
-    background-color: #41b294;
-  }
-  .card-body {
-    .card-title {
+  .movie-card {
+    box-shadow: 1px 1px 10px 4px #dadada;
+    justify-content: center;
+    position: relative;
+    .stickerCard {
+      display: inline-block;
+      position: absolute;
+      z-index: 10;
+      top: 138px;
+      left: 0;
+      padding: 0 10px;
+      color: white;
+      background-color: #41b294;
       white-space: nowrap;
-      width: 200px;
+      width: 150px;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .movieDetail {
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
-    }
-    .cardIcon {
-      position: absolute;
-      bottom: 65px;
-      .card1 {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
+    .card-body {
+      .movieDetail {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
       }
-    }
-    .price {
-      position: absolute;
-      bottom: -2px;
-      padding-top: 10px;
-      .price1 {
-        margin-bottom: -10px;
+      .cardIcon {
+        position: absolute;
+        bottom: 65px;
+        .card1 {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
       }
-    }
-    hr {
-      width: 100%;
-      border: 0, 1px solid rgb(115, 115, 115);
-      position: absolute;
-      bottom: 42px;
-      left: 0;
+      .price {
+        position: absolute;
+        bottom: -2px;
+        padding-top: 10px;
+        .price1 {
+          margin-bottom: -10px;
+        }
+      }
+      hr {
+        width: 100%;
+        border: 0, 1px solid rgb(115, 115, 115);
+        position: absolute;
+        bottom: 42px;
+        left: 0;
+      }
     }
   }
 }
