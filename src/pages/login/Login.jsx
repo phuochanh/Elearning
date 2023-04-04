@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { CloseOutlined } from "@ant-design/icons";
 import { Space } from "antd";
-import "./styleLogin.css";
 import { loginApi } from "../../services/user";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfoAction } from "../../store/actions/userAction";
-import { Swal } from "sweetalert2";
+import Swal from "sweetalert2";
+import "./styleLogin.scss";
+
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

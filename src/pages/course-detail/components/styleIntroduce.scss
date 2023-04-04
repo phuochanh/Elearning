@@ -1,0 +1,27 @@
+.introduce{
+    .introduceItem{
+        display: flex;
+        line-height: 5px;
+        img{
+            height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+        }
+        .GV{
+            font-size: 14px;
+            padding-top: 12px;
+            color: #7b7a78;
+        }
+        .introduceItemReview{
+            padding-top: 5px;
+            font-size: 12px;
+            text-align: right;
+            color: #7b7a78;
+        }
+    }
+    hr{
+            margin-top: 30px;
+            margin-left: 2px;
+        }
+}

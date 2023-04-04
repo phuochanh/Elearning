@@ -32,7 +32,7 @@ export default function Header() {
     return courseState.map((element) => {
       return (
         <p key={element.maDanhMuc}>
-          <Link>{element.tenDanhMuc}</Link>
+          <Link to={`/course-catalory/${element.maDanhMuc}`}>{element.tenDanhMuc}</Link>
         </p>
       );
     });
@@ -70,7 +70,9 @@ export default function Header() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="dropdown nav-item active pl-5 pt-2">
               <div className="dropdown-toggle" data-toggle="dropdown">
-                <strong className="catalog">DANH MỤC</strong>
+                <strong className="catalog">
+                  <a href="#">DANH MỤC</a>
+                  </strong>
               </div>
               <div className="dropdown-menu p-3 catalog">{renderContent()}</div>
             </li>

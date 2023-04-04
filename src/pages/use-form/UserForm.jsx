@@ -5,20 +5,41 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./styleUserForm.scss";
 import { fetchUpdateUserInfoApi } from "services/user";
+import { useForm } from "antd/es/form/Form";
+
 
 export default function UserForm() {
+  const hookStateUser = useSelector((state) => state.userReducer);
+  const [form] = useForm();
   const navigate = useNavigate();
-  const [userState, setUserState] = useState([]);
+  const [values, setValues] = useState({
+    taiKhoan: "",
+    matKhau: "",
+    hoTen: "",
+    soDT: "",
+    maLoaiNguoiDung: "",
+    maNhom: "GP01",
+    email: "",
+  });
 
   const [typeUser, setTypeUser] = useState([]);
 
   useEffect(() => {
     updateForm();
   }, []);
+
   const updateForm = async (data) => {
     const result = await fetchUpdateUserInfoApi(data);
     console.log(result.data);
-    setUserState(result.data);
+
+    // form.setFieldValue({
+    //   hoTen: result.data.hoTen,
+    //   matKhau: result.data.matKhau,
+    //   email: result.data.email,
+    //   soDT: result.data.soDT,
+    // })
+
+    // setUserState(result.data);
   };
 
   return (
@@ -40,6 +61,7 @@ export default function UserForm() {
             // onSubmit={(event) => handleSubmit(event)}
             action=""
             className="container-xl"
+            from={form}
           >
             <div>
               <div>
