@@ -42,7 +42,12 @@ export default function UserInfo() {
                   Thông tin cá nhân
                 </button>
                 <button className="tabLink btn btn-info ml-2">Khóa học</button>
-                <button onClick={() => navigate("/admin")} className="tabLink btn btn-danger ml-2">admin</button>
+                <button
+                  onClick={() => navigate("/admin")}
+                  className="tabLink btn btn-danger ml-2"
+                >
+                  Quản trị
+                </button>
               </div>
               <div className="tabContent active">
                 <section className="userInfo">
