@@ -7,8 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function CourseCatalory() {
    const params = useParams();
     const navigate = useNavigate();
-  const [astate, setState] = useState([]);
-
+  const [aState, setState] = useState([]);
+  
   useEffect(() => {
     getCourseCatalory();
   }, []);
@@ -16,7 +16,6 @@ export default function CourseCatalory() {
   const getCourseCatalory = async () => {
     const result = await fetchCourseByCatagogyApi(params.id);
     // console.log(result.data);
-   
     setState(result.data);
     
     // if(result.data.danhMucKhoaHoc.some((item) => item.maDanhMucKhoahoc == "BackEnd")){
@@ -24,9 +23,8 @@ export default function CourseCatalory() {
     // }
   };
 
-
   const renderCourseCatalory = () => {
-    return astate.map((ele) => {
+    return aState.map((ele) => {
         return (<div className="col-md-6 col-xl-3 mt-4 courseList" key={ele.maKhoaHoc}>
         <div
           className="card movie-card"
@@ -70,7 +68,7 @@ export default function CourseCatalory() {
         <p>HÃY CHỌN KHÓA HỌC MONG MUỐN !!!</p>
       </div>
       <div className="mt-5 ml-5">
-        <Button>{astate.tenDanhMucKhoaHoc}</Button>
+        <Button>{aState.danhMucKhoaHoc}</Button>
         <div className="row mt-2 ml-1 mr-4">
           {renderCourseCatalory()}
         </div>
