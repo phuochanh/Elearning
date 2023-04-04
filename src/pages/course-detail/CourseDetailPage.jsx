@@ -8,6 +8,10 @@ import DetailIntroduce from "./components/DetailIntroduce";
 export default function CourseDetailPage() {
   return (
     <div className="py-5 ">
+      <div className="titleCourse">
+        <h3>THÔNG TIN KHÓA HỌC</h3>
+        <p>TIẾN LÊN VÀ KHÔNG CHẦN CHỪ !!!</p>
+      </div>
       <div className="ml-5 mt-5">
         <div className="row mr-5">
           <div className="col-lg-8 col-md-7 course-Detail">

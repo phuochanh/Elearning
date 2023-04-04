@@ -46,7 +46,7 @@ export default function Router() {
           element: <UserInfo />,
         },
         {
-          path: "/user-form",
+          path: "/user-info/:id",
           element: <UserForm />,
         },
         {

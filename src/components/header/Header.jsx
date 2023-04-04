@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./style.scss";
-import { fetchCourseCatalogApi } from "../../services/course";
+import { fetchCourseCatalogApi, fetchCourseSearchApi } from "../../services/course";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfoAction } from "../../store/actions/userAction";
 import {LogoutOutlined} from "@ant-design/icons";
@@ -12,6 +12,8 @@ export default function Header() {
   const dispatch = useDispatch();
   const [courseState, setCourseState] = useState([]);
   const userState = useSelector((state) => state.userReducer);
+  const [searchState, setSearchState] = useState([])
+
 
   const handleLogout = () => {
     localStorage.removeItem("USER_INFO_KEY");
@@ -21,6 +23,7 @@ export default function Header() {
 
   useEffect(() => {
     getCourseCatalog();
+    getSearch()
   }, []);
 
   const getCourseCatalog = async () => {
@@ -38,6 +41,10 @@ export default function Header() {
     });
   };
 
+  const getSearch = async () => {
+    const res = await fetchCourseSearchApi()
+    console.log(res)
+  }
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">

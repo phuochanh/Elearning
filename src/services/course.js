@@ -84,3 +84,10 @@ export const searchCourseAdminApi = (key) => {
     method: "GET",
   });
 };
+
+export const fetchCourseSearchApi = (key) => {
+  return axiosRequest ({
+    url: `/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${key}&MaNhom=${MA_NHOM}`,
+    method: "GET",
+  })
+}

@@ -83,7 +83,7 @@ export default function UserInfo() {
                           <span className="ml-2">Học viên</span>
                         </p>
                         <button
-                          onClick={() => navigate("/user-form")}
+                          onClick={() => navigate(`/user-info/${stateInfo.taiKhoan}`)}
                           className="btn btn-warning"
                         >
                           CẬP NHẬT
