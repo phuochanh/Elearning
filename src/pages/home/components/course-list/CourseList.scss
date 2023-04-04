@@ -1,5 +1,5 @@
-.courseList{
-p{
+.courseList {
+  p {
     width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -9,6 +9,8 @@ p{
     display: -webkit-box;
     -webkit-box-orient: vertical;
     color: black;
-}
-a{text-decoration: none;}
+  }
+  a {
+    text-decoration: none;
+  }
 }

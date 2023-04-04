@@ -47,7 +47,7 @@ const tailFormItemLayout = {
     },
   },
 };
-export default function UserForm() {
+export default function UserFormAmin() {
   const [form] = Form.useForm();
   const [name, setName] = useState("");
   const navigate = useNavigate();

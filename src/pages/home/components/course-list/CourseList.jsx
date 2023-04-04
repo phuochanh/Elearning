@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchCourseApi } from "../../../../services/course";
 import "./CourseList.scss";
+import { Button, Card } from "antd";
+import Slider from "react-slick";
 
 export default function CourseList() {
   const navigate = useNavigate();
+
   const [courseList, setCourseList] = useState([]);
   useEffect(() => {
     getCourseList();
@@ -12,8 +15,10 @@ export default function CourseList() {
 
   const getCourseList = async () => {
     const result = await fetchCourseApi();
-    console.log(result.data);
-    setCourseList(result.data);
+    console.log(result);
+    const topViewed = result.data.filter((course) => course.luotXem >= 100);
+
+    setCourseList(topViewed.slice(0, 4));
   };
 
   const renderCourseList = () => {
@@ -34,6 +39,7 @@ export default function CourseList() {
               <div className="card-body">
                 <h5 className="card-title">{ele.tenKhoaHoc}</h5>
                 <p>{ele.moTa}</p>
+
                 <button
                   onClick={() => navigate(`/course-detail/${ele.maKhoaHoc}`)}
                   className="btn btn-success"
@@ -48,11 +54,11 @@ export default function CourseList() {
     });
   };
   return (
-    <>
-      <a href="#">
-        <p className="ml-5">Khóa học phổ biến</p>
-      </a>
-      <div className="row mt-4 mx-5">{renderCourseList()}</div>
-    </>
+    <div className="container my-5">
+      <Button size="large" danger className="mr-2">
+        Khóa học phổ biến
+      </Button>
+      <div className="row mt-4 ">{renderCourseList()}</div>
+    </div>
   );
 }

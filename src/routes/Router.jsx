@@ -1,18 +1,21 @@
 import React from "react";
 
+import AdminGuard from "guards/AdminGuard";
+import { AdminLayout } from "layouts/admin/Admin";
+import ElearningManagement from "pages/admin/ElearningManagement";
+import UserManagement from "pages/admin/UserManagement";
+import CourseForm from "pages/courseFormAdmin/CourseForm";
+
 import { useRoutes } from "react-router-dom";
-import AdminGuard from "../guards/AdminGuard";
-import { AdminLayout } from "../layouts/admin/Admin";
-import HomeLayout from "../layouts/home/HomeLayout";
-import ElearningManagement from "../pages/admin/ElearningManagement";
-import UserManagement from "../pages/admin/UserManagement";
-import CourseDetailPage from "../pages/course-detail/CourseDetailPage";
-import HomePage from "../pages/home/HomePage";
-import Login from "../pages/login/Login";
-import Register from "../pages/register/Register";
-import NoAuthGuard from "../guards/NoAuthGuard";
-import CourseForm from "../pages/courseFormAdmin/CourseForm";
-import UserForm from "../pages/userFormAdmin/UserForm";
+import NoAuthGuard from "guards/NoAuthGuard";
+import HomeLayout from "layouts/home/HomeLayout";
+import CourseDetailPage from "pages/course-detail/CourseDetailPage";
+import HomePage from "pages/home/HomePage";
+import Login from "pages/login/Login";
+import Register from "pages/register/Register";
+import UserForm from "pages/use-form/UserForm";
+import UserInfo from "pages/user-info/UserInfo";
+import UserFormAmin from "pages/userFormAdmin/UserFormAdmin";
 
 export default function Router() {
   const routing = useRoutes([
@@ -37,6 +40,14 @@ export default function Router() {
           path: "/register",
           element: <Register />,
         },
+        {
+          path: "/user-info",
+          element: <UserInfo />,
+        },
+        {
+          path: "/user-form",
+          element: <UserForm />,
+        },
       ],
     },
     {
@@ -53,7 +64,7 @@ export default function Router() {
             },
             {
               path: "/admin/user-management/add",
-              element: <UserForm />,
+              element: <UserFormAmin />,
             },
             {
               path: "/admin/elearning-management",
