@@ -5,6 +5,7 @@ import "./style.scss";
 import { fetchCourseCatalogApi } from "../../services/course";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfoAction } from "../../store/actions/userAction";
+import {LogoutOutlined} from "@ant-design/icons";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function Header() {
     localStorage.removeItem("USER_INFO_KEY");
     dispatch(setUserInfoAction(null));
     navigate("/");
-  }
+  };
 
   useEffect(() => {
     getCourseCatalog();
@@ -27,22 +28,22 @@ export default function Header() {
     setCourseState(result.data);
   };
 
- const renderContent = () => {
-  return courseState.map((element) => {
-    return <p key={element.maDanhMuc}>
-      <Link>{element.tenDanhMuc}</Link>
-      </p>;
-
-  });
-};
+  const renderContent = () => {
+    return courseState.map((element) => {
+      return (
+        <p key={element.maDanhMuc}>
+          <Link>{element.tenDanhMuc}</Link>
+        </p>
+      );
+    });
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          <img src="./img/logo.png" width={240} height={70}/>
-          
-        </a>
+        <Link className="navbar-brand" to="/">
+          <img src="./img/logo.png" width={240} height={70} />
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -67,16 +68,12 @@ export default function Header() {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
-            <li className="dropdown nav-item active pl-5 pt-2" >
+            <li className="dropdown nav-item active pl-5 pt-2">
               <div className="dropdown-toggle" data-toggle="dropdown">
                 <strong className="catalog">DANH MỤC</strong>
               </div>
-              <div className="dropdown-menu p-3 catalog">
-                {renderContent()}
-              </div>
+              <div className="dropdown-menu p-3 catalog">{renderContent()}</div>
             </li>
-          
             <li className="nav-item">
               <strong>
                 <a className="nav-link" href="#">
@@ -108,28 +105,32 @@ export default function Header() {
           </ul>
         </div>
         <div className="ml-auto">
-          {
-            userState.userInfo ? <>
-            
-            <span className="mr-3">Hello {userState.userInfo.hoTen}</span>
-            <button className="btn btn-danger" onClick={handleLogout}>ĐĂNG XUẤT</button>
-            </> : <>
-            <button
-            className="btn btn-outline-info my-2 my-sm-0 mr-2"
-            type="sumit"
-            onClick={() => navigate("/register")}
-          >
-            ĐĂNG KÝ
-          </button>
-          <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            onClick={() => navigate("/login")}
-          >
-            ĐĂNG NHẬP
-          </button>
+          {userState.userInfo ? (
+            <>
+            <Link className="navbar-brand" to="/user-info">
+            <img className="imgAvatar" src="./img/avatar.png" alt="" />
+        </Link>
+              <button className="btn btn-danger" onClick={handleLogout} style= {{fontSize: "1px"}}>
+              <LogoutOutlined style={{ fontSize: '15px' }}/>
+              </button>
             </>
-          }
-          
+          ) : (
+            <>
+              <button
+                className="btn btn-outline-info my-2 my-sm-0 mr-2"
+                type="sumit"
+                onClick={() => navigate("/register")}
+              >
+                ĐĂNG KÝ
+              </button>
+              <button
+                className="btn btn-outline-success my-2 my-sm-0"
+                onClick={() => navigate("/login")}
+              >
+                ĐĂNG NHẬP
+              </button>
+            </>
+          )}
         </div>
       </div>
     </nav>

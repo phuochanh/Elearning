@@ -1,0 +1,18 @@
+.teacherItem{
+    text-align: center;
+    .teacher{
+        text-align: center;
+        img{
+            height: 80px;
+        width: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        }
+    }
+    .review{
+        span{
+            padding-left: 3px;
+            color: #f6ba35;
+        }
+    }
+}
