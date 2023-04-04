@@ -32,7 +32,7 @@ export default function Header() {
     return courseState.map((element) => {
       return (
         <p key={element.maDanhMuc}>
-          <Link to="/course-catalory/:id">{element.tenDanhMuc}</Link>
+          <Link to={`/course-catalory/${element.maDanhMuc}`}>{element.tenDanhMuc}</Link>
         </p>
       );
     });

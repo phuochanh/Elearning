@@ -35,9 +35,9 @@ export const fetchCancelRegisterApi = (data) => {
   });
 };
 
-export const fetchCourseByCatagogyApi = () => {
+export const fetchCourseByCatagogyApi = (id) => {
   return axiosRequest({
-    url: `/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=TuDuy&MaNhom=${MA_NHOM}`,
+    url: `/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${id}&MaNhom=${MA_NHOM}`,
     method: "GET",
   });
 };

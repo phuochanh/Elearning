@@ -15,14 +15,15 @@ export default function CourseCatalory() {
 
   const getCourseCatalory = async () => {
     const result = await fetchCourseByCatagogyApi(params.id);
-    console.log(result.data);
+    // console.log(result.data);
    
     setState(result.data);
+    
+    // if(result.data.danhMucKhoaHoc.some((item) => item.maDanhMucKhoahoc == "BackEnd")){
+    //     console.log("2");
+    // }
   };
 
-//   const a = (id) => {
-// if()
-//   }
 
   const renderCourseCatalory = () => {
     return astate.map((ele) => {
