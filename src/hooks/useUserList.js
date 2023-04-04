@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { LoadingContext } from "../contexts/loading/LoadingContext";
-import { fetchUserListApi } from "../services/course";
+import { fetchUserListApi } from "../services/user";
 
 export const useUserList = () => {
   const [userList, setUserList] = useState([]);

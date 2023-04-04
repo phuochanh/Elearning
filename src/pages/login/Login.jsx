@@ -1,43 +1,42 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { CloseOutlined } from "@ant-design/icons";
 import { Space } from "antd";
 import "./styleLogin.css";
-import { loginApi } from '../../services/user';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUserInfoAction } from '../../store/actions/userAction';
-import Swal from "sweetalert2";
-
+import { loginApi } from "../../services/user";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserInfoAction } from "../../store/actions/userAction";
+import { Swal } from "sweetalert2";
 export default function Login() {
-  const dispatch = useDispatch()
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const userState = useSelector((state) => state.userReducer);
+  const userState = useSelector((state) => state.userReducer);
 
-    const [state, setState] = useState({
-      taiKhoan: "",
-      matKhau: "",
+  const [state, setState] = useState({
+    taiKhoan: "",
+    matKhau: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setState({
+      ...state,
+      [name]: value,
     });
+  };
 
-    const handleChange = (event) => {
-      const {name, value} = event.target;
-      setState({
-        ...state,
-        [name]: value,
-      });
-    };
-    
-    const handleSubmit = async (event) => {
-      event.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-     const result = await loginApi(state);
+    const result = await loginApi(state);
 
-     localStorage.setItem("USER_INFO_KEY", JSON.stringify(result.data));
-     dispatch(setUserInfoAction(result.data));
-     console.log(result.data)
+    localStorage.setItem("USER_INFO_KEY", JSON.stringify(result.data));
+    dispatch(setUserInfoAction(result.data));
+    console.log(result.data);
 
-     if (userState.userInfo) {
+    if (userState.userInfo) {
       Swal.fire({
         title: "Đăng nhập thành công",
         text: `Xin chào ${userState.userInfo.hoTen}`,
@@ -47,8 +46,8 @@ export default function Login() {
       });
     }
     navigate("/");
-    }
-    
+  };
+
   return (
     <div className="bg__login">
       <div className="center">
@@ -70,7 +69,7 @@ export default function Login() {
               type="text"
               required
               name="taiKhoan"
-              onChange = {handleChange}
+              onChange={handleChange}
             />
             <span />
             <label>Username</label>
@@ -80,7 +79,7 @@ export default function Login() {
               type="password"
               required
               name="matKhau"
-              onChange = {handleChange}
+              onChange={handleChange}
             />
             <span />
             <label>Password</label>
@@ -93,5 +92,5 @@ export default function Login() {
         </form>
       </div>
     </div>
-  )
+  );
 }

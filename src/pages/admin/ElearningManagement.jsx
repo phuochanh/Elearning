@@ -1,20 +1,40 @@
-import React from "react";
-import { Space, Table, Tag, Button, notification } from "antd";
+import React, { useEffect, useState } from "react";
+import { Space, Table, Tag, Button, notification, Modal } from "antd";
 import { useCourseList } from "../../hooks/useCourseList";
 import "./style.scss";
+
 import {
   CloseOutlined,
   EditOutlined,
   CalendarOutlined,
+  FormOutlined,
 } from "@ant-design/icons";
 import { deleteCourseApi } from "../../services/course";
+import { useNavigate } from "react-router";
 export default function ElearningManagement() {
   const courseList = useCourseList();
-
-  const deleteCourse = (maKhoaHoc) => {
-    deleteCourseApi(maKhoaHoc);
+  const navigate = useNavigate();
+  const { reload, setReload } = useState(false);
+  useEffect(() => {}, [reload]);
+  const deleteCourse = async (maKhoaHoc) => {
+    try {
+      await deleteCourseApi(maKhoaHoc);
+      notification.success({
+        message: "Xóa thành công ",
+      });
+      setReload(true);
+    } catch ({ response }) {
+      notification.error({
+        message: response.data || "Error deleting!",
+      });
+    }
   };
-
+  const handleConfirmRemove = (maKhoaHoc) => {
+    Modal.confirm({
+      title: "Bạn có chắc muốn xóa khóa học này?",
+      onOk: () => deleteCourse(maKhoaHoc),
+    });
+  };
   const columns = [
     {
       title: "Tên khóa học",
@@ -48,12 +68,19 @@ export default function ElearningManagement() {
       render: (record) => {
         return (
           <div>
-            <EditOutlined key="edit" title="Edit" className="update-icon" />
+            <EditOutlined
+              key="edit"
+              title="Edit"
+              className="update-icon"
+              onClick={() =>
+                navigate(`/admin/elearning-management/edit/${record.maKhoaHoc}`)
+              }
+            />
             <CloseOutlined
               key="delete"
               title="Delete"
               className="remove-icon"
-              onClick={() => deleteCourse(record.maKhoaHoc)}
+              onClick={() => handleConfirmRemove(record.maKhoaHoc)}
             />
           </div>
         );
@@ -62,6 +89,12 @@ export default function ElearningManagement() {
   ];
   return (
     <div>
+      <Button
+        className="mb-2"
+        onClick={() => navigate(`/admin/elearning-management/add`)}
+      >
+        Thêm khóa học
+      </Button>
       <Table columns={columns} dataSource={courseList} />
     </div>
   );

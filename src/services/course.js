@@ -1,4 +1,5 @@
 import axios from "axios";
+import { axiosRequest } from "../configs/axios.config";
 import { BASE_URL, TOKEN_CYBERSOFT } from "../constants";
 export const fetchCourseApi = () => {
   return axios({
@@ -36,23 +37,31 @@ export const fetchRegisterCourseApi = () => {
     },
   });
 };
-export const fetchUserListApi = () => {
-  return axios({
-    url: `${BASE_URL}/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`,
-    method: "GET",
-    headers: {
-      TokenCybersoft: TOKEN_CYBERSOFT,
-    },
+
+export const deleteCourseApi = (maKhoaHoc) => {
+  return axiosRequest({
+    url: `/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${maKhoaHoc}`,
+    method: "DELETE",
   });
 };
-export const deleteCourseApi = (maKhoaHoc) => {
-  console.log(maKhoaHoc);
-  return axios({
-    url: `${BASE_URL}/QuanLyKhoaHoc/XoaKhoaHoc?maKhoaHoc=${maKhoaHoc}`,
-    method: "DELETE",
-    headers: {
-      Authorization: "Bearer " + TOKEN_CYBERSOFT,
-      TokenCybersoft: TOKEN_CYBERSOFT,
-    },
+export const addCourseApi = (data) => {
+  return axiosRequest({
+    url: `/QuanLyKhoaHoc/ThemKhoaHocUploadHinh`,
+    method: "POST",
+    data: data,
+  });
+};
+export const editCourseUploadApi = (data) => {
+  return axiosRequest({
+    url: `/QuanLyKhoaHoc/CapNhatKhoaHocUpload`,
+    method: "POST",
+    data: data,
+  });
+};
+export const editCourseApi = (data) => {
+  return axiosRequest({
+    url: `QuanLyKhoaHoc/CapNhatKhoaHoc`,
+    method: "PUT",
+    data: data,
   });
 };

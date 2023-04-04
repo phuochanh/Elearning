@@ -7,8 +7,10 @@ import {
   CalendarOutlined,
 } from "@ant-design/icons";
 import { useUserList } from "../../hooks/useUserList";
+import { useNavigate } from "react-router-dom";
 export default function ElearningManagement() {
   const userList = useUserList();
+  const navigate = useNavigate();
   const columns = [
     {
       title: "Họ và tên",
@@ -55,6 +57,12 @@ export default function ElearningManagement() {
   ];
   return (
     <div>
+      <Button
+        className="mb-2"
+        onClick={() => navigate(`/admin/user-management/add`)}
+      >
+        Thêm tài khoản
+      </Button>
       <Table columns={columns} dataSource={userList} />
     </div>
   );

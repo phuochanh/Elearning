@@ -11,6 +11,8 @@ import HomePage from "../pages/home/HomePage";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import NoAuthGuard from "../guards/NoAuthGuard";
+import CourseForm from "../pages/courseFormAdmin/CourseForm";
+import UserForm from "../pages/userFormAdmin/UserForm";
 
 export default function Router() {
   const routing = useRoutes([
@@ -50,8 +52,20 @@ export default function Router() {
               element: <UserManagement />,
             },
             {
+              path: "/admin/user-management/add",
+              element: <UserForm />,
+            },
+            {
               path: "/admin/elearning-management",
               element: <ElearningManagement />,
+            },
+            {
+              path: "/admin/elearning-management/edit/:maKhoaHoc",
+              element: <CourseForm />,
+            },
+            {
+              path: "/admin/elearning-management/add",
+              element: <CourseForm />,
             },
           ],
         },
