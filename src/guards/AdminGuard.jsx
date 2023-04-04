@@ -7,29 +7,26 @@ export default function AdminGuard() {
   const userState = useSelector((state) => state.userReducer);
   const navigate = useNavigate();
   useEffect(() => {
-    // // ng dùng chưa đăng nhập
-    // if (!userState.userInfo) {
-    //   notification.warning({
-    //     message: "Chưa đăng nhập chưa thể truy cập !",
-    //   });
-    //   navigate("/admin/user-management");
-    // } else {
-    //   //ng dùng đã đăng nhập nhưng maLoaiNguoiDung = Khach Hang
-    //   if (userState.userInfo.maLoaiNguoiDung === MaLoaiNguoiDung.KhachHang) {
-    //     notification.warning({
-    //       message: "Khách hàng không có quyển truy cập !",
-    //     });
-    //     navigate("/admin/user-management");
-    //   }
-    //   //ng dùng đã vào trang quản trị thành công
-    //   if (userState.userInfo.maLoaiNguoiDung === MaLoaiNguoiDung.QuanTri) {
-    //     notification.success({
-    //       message: "Vào thành công trang quản lý !",
-    //     });
-    //     navigate("/admin");
-    //   }
-    // }
-    navigate("/admin/elearning-management");
+    if (!userState.userInfo) {
+      notification.warning({
+        message: "Vui lòng đăng nhập !",
+      });
+      navigate("/login");
+    } else {
+      if (userState.userInfo.maLoaiNguoiDung === "HV") {
+        notification.warning({
+          message: "Học viên không có quyển truy cập !",
+        });
+        navigate("/");
+      }
+
+      if (userState.userInfo.maLoaiNguoiDung === "GV") {
+        notification.success({
+          message: "Vào thành công trang quản lý !",
+        });
+        navigate("/admin/elearning-management");
+      }
+    }
   }, []);
 
   return <Outlet />;
