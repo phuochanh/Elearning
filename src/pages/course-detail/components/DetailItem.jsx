@@ -3,9 +3,9 @@ import {CaretRightOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import { Button} from 'antd';
 export default function DetailItem() {
   return (
-    <div>
+    <div className='mt-5'>
               <h4>Nội dung khóa học</h4>
-              <div className="courseDetail">
+              <div className="courseDetail mt-5">
               <div className="courseDetailItem" style={{backgroundColor:"#fafafa"}}>
                 <span>MỤC 1: GIỚI THIỆU</span>
                 <Button className="ml-5">XEM TRƯỚC</Button>
