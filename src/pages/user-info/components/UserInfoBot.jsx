@@ -1,5 +1,4 @@
 import React from "react";
-import "../styleUserInfo.scss";
 
 export default function UserInfoBot() {
   return (

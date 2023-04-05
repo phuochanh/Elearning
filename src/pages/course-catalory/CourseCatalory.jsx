@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "antd";
-import "./styleCourseCatalory.scss";
-import { fetchCourseByCatagogyApi } from "services/course";
+import { fetchCourseByCatagogyApi, fetchCourseCatalogApi } from "services/course";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function CourseCatalory() {
    const params = useParams();
+   const { id } = useParams();
     const navigate = useNavigate();
   const [aState, setState] = useState([]);
+  const [catalory, setCatalory] = useState([]);
   
   useEffect(() => {
     getCourseCatalory();
-  }, []);
+    getTitle()
+  }, [id]);
+
+  const getTitle = async () => {
+    const result = await fetchCourseCatalogApi();
+    const listDanhMuc = result.data;
+    const danhMuc = listDanhMuc.find(item => item.maDanhMuc == id)
+    setCatalory(danhMuc)
+  }
 
   const getCourseCatalory = async () => {
     const result = await fetchCourseByCatagogyApi(params.id);
-    // console.log(result.data);
     setState(result.data);
-    
-    // if(result.data.danhMucKhoaHoc.some((item) => item.maDanhMucKhoahoc == "BackEnd")){
-    //     console.log("2");
-    // }
   };
 
   const renderCourseCatalory = () => {
@@ -42,7 +45,7 @@ export default function CourseCatalory() {
           style={{height: 180, width: 260}}>
             <p >{ele.moTa}</p>
             <div className="cardIcon">
-              <img className="card1" src="./img/pic11.png" alt="" />
+              <img className="card1" src="../img/pic11.png" alt="" />
               <span className="ml-2 ">Elon Musk</span>
             </div>
             <hr />
@@ -68,8 +71,8 @@ export default function CourseCatalory() {
         <p>HÃY CHỌN KHÓA HỌC MONG MUỐN !!!</p>
       </div>
       <div className="mt-5 ml-5">
-        <Button>{aState.danhMucKhoaHoc}</Button>
-        <div className="row mt-2 ml-1 mr-4">
+        <h4>{catalory.tenDanhMuc}</h4>
+        <div className="row mt-2 ml-1 mr-4 mb-5">
           {renderCourseCatalory()}
         </div>
       </div>

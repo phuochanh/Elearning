@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userInfoApi } from "../../services/user";
 import UserInfoBot from "./components/UserInfoBot";
-import "./styleUserInfo.scss";
 
 export default function UserInfo() {
   const navigate = useNavigate();
@@ -14,7 +13,6 @@ export default function UserInfo() {
 
   const getUserInfo = async () => {
     const result = await userInfoApi();
-    // console.log(result);
     setStateInfo(result.data);
   };
 
@@ -83,7 +81,7 @@ export default function UserInfo() {
                           <span className="ml-2">Học viên</span>
                         </p>
                         <button
-                          onClick={() => navigate("/user-form")}
+                          onClick={() => navigate(`/user-info/${stateInfo.taiKhoan}`)}
                           className="btn btn-warning"
                         >
                           CẬP NHẬT

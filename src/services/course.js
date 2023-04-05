@@ -91,3 +91,10 @@ export const fetchRegisterCourseAdminApi = (data) => {
     data: data,
   });
 };
+
+export const fetchCourseFilterApi = (key) => {
+  return axiosRequest({
+    url: `/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${key}&MaNhom=${MA_NHOM}`,
+    method: "GET",
+  });
+};

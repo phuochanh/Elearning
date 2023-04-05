@@ -12,11 +12,6 @@
     width: 500px;
     background-color: #080c2a;
     color: white;
-
-    // .modalHeader{
-    //     // padding: 0 350px;
-
-    // }
     .modalHeader {
       display: flex;
       position: relative;
@@ -32,13 +27,16 @@
     }
     .modalBody {
       padding-top: 10px;
-      input {
-        width: 100%;
-        margin: 5px 0;
-        padding: 5px 15px;
-        border-radius: 5px;
-        border: 2px solid #41b294;
-        outline: none;
+      .form-group {
+        line-height: 12px;
+        input {
+          width: 100%;
+          margin: 5px 0;
+          padding: 5px 15px;
+          border-radius: 5px;
+          border: 2px solid #41b294;
+          outline: none;
+        }
       }
     }
   }

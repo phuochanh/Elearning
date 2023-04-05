@@ -1,0 +1,44 @@
+.modal-flex {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    .register {
+      box-shadow: 1px 1px 10px 4px #dadada;
+      justify-content: center;
+      margin-bottom: 15px;
+      padding: 20px 30px;
+      height: 740px;
+      width: 500px;
+      background-color: #080c2a;
+      color: white;
+      .modalHeader {
+        display: flex;
+        position: relative;
+        button {
+          color: white;
+          position: absolute;
+          right: 5px;
+        }
+      }
+      hr {
+        width: 100%;
+        border: 1px solid white;
+      }
+      .modalBody {
+        padding-top: 10px;
+        .form-group {
+          line-height: 12px;
+          input {
+            width: 100%;
+            margin: 5px 0;
+            padding: 5px 15px;
+            border-radius: 5px;
+            border: 2px solid #41b294;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+  

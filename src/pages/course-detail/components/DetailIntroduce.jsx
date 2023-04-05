@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchCourseDetailApi } from "../../../services/course";
-import "./styleIntroduce.scss";
 import { StarFilled } from "@ant-design/icons";
 
 export default function DetailIntroduce() {
@@ -45,7 +44,7 @@ export default function DetailIntroduce() {
             <StarFilled style={{ fontSize: "26px", color: "#f6ba35" }} />
             <StarFilled style={{ fontSize: "26px", color: "#f6ba35" }} />
             <StarFilled style={{ fontSize: "26px", color: "#f6ba35" }} />
-            <span className="text-center ml-2" style={{fontSize: "20px"}}>3.5</span>
+            <span className="text-center ml-2" style={{fontSize: "20px"}}>5</span>
             <p className="introduceItemReview">100 đánh giá</p>
           </div>
         </div>

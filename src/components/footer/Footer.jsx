@@ -5,8 +5,8 @@ import {
   HomeOutlined,
   RightOutlined,
 } from "@ant-design/icons";
-import "./style.scss";
 import Register from "./components/Register";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -47,7 +47,7 @@ export default function Footer() {
             <ul>
               <li>
                 <RightOutlined />
-                <a href="#">Trang chủ</a>
+                <Link to={"/"} href="#">Trang chủ</Link>
               </li>
               <li>
                 <RightOutlined />

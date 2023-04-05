@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "antd";
+import { notification } from "antd";
 import { useParams } from "react-router-dom";
 import {
   fetchCancelRegisterApi,
@@ -8,7 +8,6 @@ import {
   fetchRegisterCourseApi,
   fetchtestApi,
 } from "../../../services/course";
-import "./style.scss";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 
@@ -26,21 +25,15 @@ export default function DetailRegister() {
     taiKhoan: "",
   });
 
-  // const [bstate, setBState] = useState({
-  //   MaKhoaHoc: "LTC_GP01",
-  // })
-
   const params = useParams();
 
   useEffect(() => {
     getCourseDetail();
     geta();
-    // testb()
   }, []);
 
   const geta = async () => {
     const a = await fetchCourseInfoApi(params.id);
-    // console.log(a)
     setState(a.data);
 
     if (
@@ -54,41 +47,42 @@ export default function DetailRegister() {
 
   const getCourseDetail = async () => {
     const result = await fetchCourseDetailApi(params.id);
-    // console.log(result);
     setCourseState(result.data);
   };
 
   const getRegisterCourse = async (data) => {
-    const respone = await fetchRegisterCourseApi(data);
-    // console.log(respone);
-    setRegisterState(respone.data);
-    Swal.fire({
-      title: "Đăng ký khóa học thành công!",
-      text: "Hoàn tất!!",
-      icon: "success",
-      timer: 2000,
-      showConfirmButton: false,
-    });
+    try {
+      await fetchRegisterCourseApi(data);
+      Swal.fire({
+        title: "Đăng ký khóa học thành công!",
+        text: "Hoàn tất!!",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    } catch (error) {
+      notification.error({
+        message: error.response.data,
+      });
+    }
   };
 
   const getCancelRegister = async (data) => {
-    const res = await fetchCancelRegisterApi(data);
-    // console.log(res);
-    setCancelState(res.data);
-    Swal.fire({
-      title: "Hủy khóa học thành công!",
-      text: "Hoàn tất!!",
-      icon: "success",
-      timer: 2000,
-      showConfirmButton: false,
-    });
+    try {
+      await fetchCancelRegisterApi(data);
+      Swal.fire({
+        title: "Hủy khóa học thành công!",
+        text: "Hoàn tất!!",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    } catch (error) {
+      notification.error({
+        message: error.response.data,
+      });
+    }
   };
-
-  // const testb = async (data) => {
-  //   const b = await fetchtestApi (data);
-  //   console.log(b);
-  //   setBState(b.data);
-  // }
 
   return (
     <div className="col-lg-4 col-md-5 left">
@@ -98,7 +92,6 @@ export default function DetailRegister() {
           <strong className="price text-center ">500.000đ</strong>
         </p>
       </div>
-
       <div className="leftInfo">
         <div className="d-flex">
           {}
@@ -115,7 +108,6 @@ export default function DetailRegister() {
             HỦY
           </button>
         </div>
-
         <div className="row leftInfoItem mt-4">
           <ul>
             <li>
