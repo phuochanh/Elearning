@@ -2,17 +2,19 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./style.scss";
-import { fetchCourseCatalogApi, fetchCourseSearchApi } from "../../services/course";
+import { fetchCourseCatalogApi, fetchCourseFilterApi } from "../../services/course";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfoAction } from "../../store/actions/userAction";
 import {LogoutOutlined} from "@ant-design/icons";
+import { Input, Table } from "antd";
 
 export default function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [courseState, setCourseState] = useState([]);
   const userState = useSelector((state) => state.userReducer);
-  const [searchState, setSearchState] = useState([])
+  const [keyword, setKeyWord] = useState("");
+  const [filter, setfilter] = useState([])
 
 
   const handleLogout = () => {
@@ -23,7 +25,7 @@ export default function Header() {
 
   useEffect(() => {
     getCourseCatalog();
-    // getSearch()
+    
   }, []);
 
   const getCourseCatalog = async () => {
@@ -41,9 +43,11 @@ export default function Header() {
     });
   };
 
-  const getSearch = async () => {
-    const res = await fetchCourseSearchApi()
-    console.log(res)
+  const handleSearch = async (keyword) => {
+    const dataKey = await fetchCourseFilterApi(keyword)
+    console.log(dataKey)
+    setfilter(dataKey.data)
+
   }
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -62,14 +66,15 @@ export default function Header() {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        <form className="d-flex" role="search">
-          <input
-            className="form-control me-2"
+        <div>
+        <Input.Search
             type="search"
             placeholder="Search"
             aria-label="Search"
+            onSearch={handleSearch}
+            onChange={(event) => setKeyWord(event.target.value)}
           />
-        </form>
+        </div>
         <div
           className="collapse navbar-collapse ml-5"
           id="navbarSupportedContent"

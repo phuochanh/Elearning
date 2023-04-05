@@ -45,7 +45,7 @@ export default function DetailIntroduce() {
             <StarFilled style={{ fontSize: "26px", color: "#f6ba35" }} />
             <StarFilled style={{ fontSize: "26px", color: "#f6ba35" }} />
             <StarFilled style={{ fontSize: "26px", color: "#f6ba35" }} />
-            <span className="text-center ml-2" style={{fontSize: "20px"}}>3.5</span>
+            <span className="text-center ml-2" style={{fontSize: "20px"}}>5</span>
             <p className="introduceItemReview">100 đánh giá</p>
           </div>
         </div>
