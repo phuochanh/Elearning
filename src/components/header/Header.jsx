@@ -23,7 +23,7 @@ export default function Header() {
 
   useEffect(() => {
     getCourseCatalog();
-    getSearch()
+    // getSearch()
   }, []);
 
   const getCourseCatalog = async () => {

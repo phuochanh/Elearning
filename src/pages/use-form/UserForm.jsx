@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { Button, Space } from "antd";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { useState } from "react";
 import "./styleUserForm.scss";
 import { fetchUpdateUserInfoApi } from "services/user";
 import { userInfoApi } from "../../services/user";
+import Swal from "sweetalert2";
 
 export default function UserForm() {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     taiKhoan: "",
     matKhau: "",
@@ -17,53 +19,64 @@ export default function UserForm() {
     email: "",
   });
 
-  const [updateState, setUpdateState] = useState({
+  const [errors, setErrors] = useState({
     taiKhoan: "",
     matKhau: "",
     hoTen: "",
     soDT: "",
-    maLoaiNguoiDung: "",
-    maNhom: "GP01",
     email: "",
-  });
+  }); 
 
-  const [typeUser, setTypeUser] = useState([]);
+  const handleBlur = (event) => {
+    let message = "";
+    const { name, title, validity } = event.target;
+
+    const { valueMissing, patternMismatch } = validity;
+
+    if (valueMissing) {
+      message = `${title} is required`;
+    }
+
+    if (patternMismatch) {
+      message = `${title} không đúng định dạng`;
+    }
+
+    setErrors({
+      ...errors,
+      [name]: message,
+    });
+  };
 
   useEffect(() => {
     getInfoDetail();
-    // handleSubmit();
   }, []);
 
   const getInfoDetail = async () => {
     const result = await userInfoApi();
-    // console.log(result.data);
     setValues(result.data);
-
-    // form.setFieldValue({
-    //   hoTen: result.data.hoTen,
-    //   matKhau: result.data.matKhau,
-    //   email: result.data.email,
-    //   soDT: result.data.soDT,
-    // })
-
-    // setUserState(result.data);
   };
 
   const handleChange = (event) => {
-    const { value, name } = event.target;
-    // console.log(event.target)
-    setUpdateState({
-      ...updateState,
-      [name]: value,
-    });
+    const { _, name } = event.target;
+    console.log(values)
+    const newValues = { ...values, [name]: event.target.value}
+    setValues(newValues)  
   };
 
   const handleSubmit = async (event) => {
-    // event.preventDefault();
-    const res = await fetchUpdateUserInfoApi(updateState);
-    console.log(res);
-    setUpdateState(res.data);
+    event.preventDefault();
+    const res = await fetchUpdateUserInfoApi(values);
+    console.log(res.data);
+    setValues(res.data)
+    Swal.fire({
+      title: "Cập nhật thông tin thành công",
+      icon: "success",
+        timer: 2000,
+        showConfirmButton: false,
+    });
+    navigate("/user-info")
   };
+
   return (
     <div className="modal-flex">
       <div className="modalContent">
@@ -76,7 +89,6 @@ export default function UserForm() {
             onSubmit={(event) => handleSubmit(event)}
             action=""
             className="container-xl"
-            // form={form}
           >
             <div>
               <div>
@@ -90,7 +102,7 @@ export default function UserForm() {
                     required
                     value={values.hoTen}
                     onChange={(event) => handleChange(event)}
-                    // onBlur={(event) => handleBlur(event)}
+                    onBlur={(event) => handleBlur(event)}
                   />
                   <span className="text-danger"></span>
                 </div>
@@ -99,14 +111,14 @@ export default function UserForm() {
                 <div className="form-group w-100">
                   <label>Mật Khẩu</label>
                   <input
-                    type="text"
+                    type="password"
                     title="Mat Khau"
                     className="form-control"
                     name="matKhau"
                     required
                     value={values.matKhau}
                     onChange={(event) => handleChange(event)}
-                    // onBlur={(event) => handleBlur(event)}
+                    onBlur={(event) => handleBlur(event)}
                   />
                   <span className="text-danger"></span>
                 </div>
@@ -123,7 +135,7 @@ export default function UserForm() {
                     name="email"
                     value={values.email}
                     onChange={(event) => handleChange(event)}
-                    // onBlur={(event) => handleBlur(event)}
+                    onBlur={(event) => handleBlur(event)}
                   />
                   <span className="text-danger"></span>
                 </div>
@@ -139,7 +151,7 @@ export default function UserForm() {
                     required
                     value={values.soDT}
                     onChange={(event) => handleChange(event)}
-                    // onBlur={(event) => handleBlur(event)}
+                    onBlur={(event) => handleBlur(event)}
                   />
                   <span className="text-danger"></span>
                 </div>
