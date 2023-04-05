@@ -3,7 +3,12 @@ import { Table, Button, notification, Modal, Input } from "antd";
 import { useCourseList } from "../../hooks/useCourseList";
 import "./style.scss";
 
-import { CloseOutlined, EditOutlined, SearchOutlined } from "@ant-design/icons";
+import {
+  CloseOutlined,
+  EditOutlined,
+  SearchOutlined,
+  UnorderedListOutlined,
+} from "@ant-design/icons";
 import { deleteCourseApi } from "../../services/course";
 import { useNavigate } from "react-router";
 import { Empty } from "antd";
@@ -59,14 +64,29 @@ export default function ElearningManagement() {
       key: "moTa",
       dataIndex: "moTa",
     },
+    {
+      title: "Ghi danh",
+      key: "ghidanh",
+      render: (record) => {
+        return (
+          <div>
+            <UnorderedListOutlined
+              key="ghidanh"
+              title="Danh sách ghi danh"
+              className="update-icon"
+              onClick={() =>
+                navigate(
+                  `/admin/elearning-management/registration-manager/${record.maKhoaHoc}`
+                )
+              }
+            />
+          </div>
+        );
+      },
+    },
 
     {
-      title: "Số lượng học viên",
-      key: "soLuongHocVien",
-      dataIndex: "soLuongHocVien",
-    },
-    {
-      title: "Hành động",
+      title: "Chỉnh sửa",
       key: "hanhdong",
       render: (record) => {
         return (

@@ -53,3 +53,24 @@ export const fetchUserAdminApi = (key) => {
     method: "GET",
   });
 };
+export const fetchUserUnregisteredApi = (data) => {
+  return axiosRequest({
+    url: `/QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh`,
+    method: "POST",
+    data: data,
+  });
+};
+export const fetchUserRegisteredApi = (data) => {
+  return axiosRequest({
+    url: `/QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc`,
+    method: "POST",
+    data: data,
+  });
+};
+export const fetchUserWaitApi = (data) => {
+  return axiosRequest({
+    url: `/QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet`,
+    method: "POST",
+    data: data,
+  });
+};

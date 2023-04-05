@@ -21,6 +21,7 @@ import { useCatalogList } from "../../hooks/useCatalogList";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "antd/es/form/Form";
+import TextArea from "antd/es/input/TextArea";
 
 export default function CourseForm() {
   const [imagePreview, setImagePreview] = useState();
@@ -44,7 +45,9 @@ export default function CourseForm() {
   };
 
   useEffect(() => {
-    getCourseDetail();
+    if (params.maKhoaHoc) {
+      getCourseDetail();
+    }
   }, [params.maKhoaHoc]);
 
   const getCourseDetail = async () => {
@@ -56,7 +59,6 @@ export default function CourseForm() {
         message: response.data || " Lỗi kết nối dữ liệu !",
       });
     }
-    console.log(result.data);
 
     const {
       maKhoaHoc,
@@ -102,7 +104,6 @@ export default function CourseForm() {
       taiKhoanNguoiTao: values.taiKhoanNguoiTao,
       hinhAnh: file ? file.name : "",
     };
-    console.log(data);
 
     const formData = new FormData();
     formData.append("maKhoaHoc", data.maKhoaHoc);
@@ -141,16 +142,12 @@ export default function CourseForm() {
 
       navigate("/admin/elearning-management/");
     } catch ({ response }) {
-      console.log(response);
       notification.error({
         message: response.data || " Có lỗi khi cập nhật !",
       });
     }
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
   const result = useCatalogList();
   return (
     <Form
@@ -181,7 +178,6 @@ export default function CourseForm() {
         maxWidth: 600,
       }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
     >
       <Form.Item label="Form Size" name="size">
         <Radio.Group>
@@ -200,7 +196,7 @@ export default function CourseForm() {
         <Input />
       </Form.Item>
       <Form.Item label="Mô tả" name="moTa">
-        <Input />
+        <TextArea rows={4} />
       </Form.Item>
       <Form.Item label="Lượt xem" name="luotXem">
         <InputNumber />

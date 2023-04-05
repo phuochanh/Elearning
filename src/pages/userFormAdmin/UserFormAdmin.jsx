@@ -45,10 +45,14 @@ export default function UserFormAmin() {
   const params = useParams();
 
   useEffect(() => {
-    getUserDetail();
+    if (params.taiKhoan) {
+      getUserDetail();
+    }
   }, [params.taiKhoan]);
 
   const getUserDetail = async () => {
+    document.getElementById("button").innerHTML = "Cập nhật";
+
     let result;
     try {
       result = await fetchUserAdminApi(params.taiKhoan);
@@ -57,11 +61,11 @@ export default function UserFormAmin() {
         message: response.data || " Lỗi kết nối dữ liệu !",
       });
     }
-    console.log(result.data);
+
     const UserResult = result.data.filter((ele) => {
       return ele.taiKhoan === params.taiKhoan;
     });
-    console.log(UserResult);
+
     const { email, hoTen, taiKhoan, matKhau, maLoaiNguoiDung, soDt } =
       UserResult[0];
 
@@ -79,6 +83,8 @@ export default function UserFormAmin() {
     try {
       if (params.taiKhoan) {
         fetchUpdateUserInfoApi(values);
+
+        document.getElementById("button").innerHTML = "Đăng kí";
         notification.success({
           message: "Cập nhật tài khoản thành công !",
         });
@@ -295,7 +301,7 @@ export default function UserFormAmin() {
       </Form.Item>
 
       <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" id="button" htmlType="submit">
           Đăng ký
         </Button>
       </Form.Item>

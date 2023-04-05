@@ -17,6 +17,7 @@ import UserForm from "pages/use-form/UserForm";
 import UserInfo from "pages/user-info/UserInfo";
 import UserFormAmin from "pages/userFormAdmin/UserFormAdmin";
 import CourseCatalory from "pages/course-catalory/CourseCatalory";
+import RegistrationManager from "pages/registrationManager/RegistrationManager";
 
 export default function Router() {
   const routing = useRoutes([
@@ -86,6 +87,10 @@ export default function Router() {
             {
               path: "/admin/elearning-management/add",
               element: <CourseForm />,
+            },
+            {
+              path: "/admin/elearning-management/registration-manager/:maKhoaHoc",
+              element: <RegistrationManager />,
             },
           ],
         },

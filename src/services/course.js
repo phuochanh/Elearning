@@ -84,3 +84,10 @@ export const searchCourseAdminApi = (key) => {
     method: "GET",
   });
 };
+export const fetchRegisterCourseAdminApi = (data) => {
+  return axiosRequest({
+    url: `/QuanLyKhoaHoc/GhiDanhKhoaHoc`,
+    method: "POST",
+    data: data,
+  });
+};
