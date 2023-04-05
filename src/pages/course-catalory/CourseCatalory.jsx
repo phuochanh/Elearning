@@ -16,9 +16,8 @@ export default function CourseCatalory() {
   }, [id]);
 
   const getTitle = async () => {
-    const result2 = await fetchCourseCatalogApi();
-    console.log(result2)
-    const listDanhMuc = result2.data;
+    const result = await fetchCourseCatalogApi();
+    const listDanhMuc = result.data;
     const danhMuc = listDanhMuc.find(item => item.maDanhMuc == id)
     setCatalory(danhMuc)
   }

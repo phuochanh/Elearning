@@ -25,7 +25,6 @@ export default function Header() {
 
   useEffect(() => {
     getCourseCatalog();
-    
   }, []);
 
   const getCourseCatalog = async () => {
@@ -44,9 +43,12 @@ export default function Header() {
   };
 
   const handleSearch = async (keyword) => {
-    const dataKey = await fetchCourseFilterApi(keyword)
-    console.log(dataKey)
-    setfilter(dataKey.data)
+    const result = await fetchCourseFilterApi(keyword)
+    console.log(result.data)
+    // const courseList = result.data;
+    // const course = courseList.find(item => item.tenDanhMuc == keyword)
+    // if(course){console.log("2")}
+    setfilter(result.data)
 
   }
   return (
