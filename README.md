@@ -12,4 +12,4 @@ Họ Tên và phân công cụ thể:
 1. Cao Phước Hạnh: Module người dùng + Login, Register
 2. Võ Văn Kiệt: Module quản trị 
 
-Bạn Ánh Big bảo là bạn không biết làm nên xin phép không tham gia dự án này ạ.
+Bạn Ánh Big bảo là bạn không biết làm nên xin phép khá trễ và  không tham gia dự án này ạ.
