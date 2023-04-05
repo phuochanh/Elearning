@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userInfoApi } from "../../services/user";
 import UserInfoBot from "./components/UserInfoBot";
-import "./styleUserInfo.scss";
 
 export default function UserInfo() {
   const navigate = useNavigate();

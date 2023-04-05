@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Button, Space } from "antd";
 import { useNavigate} from "react-router-dom";
 import { useState } from "react";
-import "./styleUserForm.scss";
 import { fetchUpdateUserInfoApi } from "services/user";
 import { userInfoApi } from "../../services/user";
 import Swal from "sweetalert2";

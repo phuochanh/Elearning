@@ -2,12 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerApi } from "../../services/user";
-
-import { CloseOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Space, Button } from "antd";
-import "./styleRegister.scss";
-
 import Swal from "sweetalert2";
 import { setRegisterInfoAction } from "../../store/actions/registerAction";
 
