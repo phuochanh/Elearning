@@ -57,7 +57,6 @@ export default function UserForm() {
 
   const handleChange = (event) => {
     const { _, name } = event.target;
-    console.log(values)
     const newValues = { ...values, [name]: event.target.value}
     setValues(newValues)  
   };

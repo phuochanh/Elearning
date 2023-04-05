@@ -32,10 +32,8 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await loginApi(state);
-
     localStorage.setItem("USER_INFO_KEY", JSON.stringify(result.data));
     dispatch(setUserInfoAction(result.data));
-    console.log(result.data);
 
     if (userState.userInfo) {
       Swal.fire({

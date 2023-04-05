@@ -13,7 +13,6 @@ export default function UserInfo() {
 
   const getUserInfo = async () => {
     const result = await userInfoApi();
-    // console.log(result);
     setStateInfo(result.data);
   };
 

@@ -45,7 +45,7 @@ export default function CourseCatalory() {
           style={{height: 180, width: 260}}>
             <p >{ele.moTa}</p>
             <div className="cardIcon">
-              <img className="card1" src="./img/pic11.png" alt="" />
+              <img className="card1" src="../img/pic11.png" alt="" />
               <span className="ml-2 ">Elon Musk</span>
             </div>
             <hr />

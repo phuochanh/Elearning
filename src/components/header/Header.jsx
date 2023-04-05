@@ -1,21 +1,19 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-// import "./style.scss";
-import { fetchCourseCatalogApi, fetchCourseFilterApi } from "../../services/course";
+import { fetchCourseCatalogApi, fetchCourseFilterApi} from "../../services/course";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserInfoAction } from "../../store/actions/userAction";
 import {LogoutOutlined} from "@ant-design/icons";
-import { Input, Table } from "antd";
+import { Input} from "antd";
 
 export default function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [courseState, setCourseState] = useState([]);
   const userState = useSelector((state) => state.userReducer);
-  const [keyword, setKeyWord] = useState("");
+  const [_, setKeyWord] = useState("");
   const [filter, setfilter] = useState([])
-
 
   const handleLogout = () => {
     localStorage.removeItem("USER_INFO_KEY");
@@ -44,12 +42,10 @@ export default function Header() {
 
   const handleSearch = async (keyword) => {
     const result = await fetchCourseFilterApi(keyword)
-    console.log(result.data)
-    // const courseList = result.data;
-    // const course = courseList.find(item => item.tenDanhMuc == keyword)
-    // if(course){console.log("2")}
-    setfilter(result.data)
-
+    const afilter = filter.filter((item) => {
+      return item.tenKhoaHoc.toLowerCase().indexOf(keyword.toLowerCase())
+    })
+    setfilter(afilter.tenKhoahoc)
   }
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">

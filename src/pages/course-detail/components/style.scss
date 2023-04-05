@@ -1,6 +1,8 @@
 .image {
     img{
-        width: 80%,
+        width: 80%;
+        height:250px;
+        object-fit: cover;
     }
     p{
         text-align: right;
