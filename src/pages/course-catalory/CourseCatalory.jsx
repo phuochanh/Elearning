@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./styleCourseCatalory.scss";
 import { fetchCourseByCatagogyApi, fetchCourseCatalogApi } from "services/course";
 import { useNavigate, useParams } from "react-router-dom";
 

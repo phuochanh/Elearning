@@ -1,5 +1,4 @@
 import React from "react";
-import "./styleBoxNumber.scss";
 
 export default function BoxNumber() {
   return (

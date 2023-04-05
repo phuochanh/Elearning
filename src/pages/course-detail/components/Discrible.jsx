@@ -1,6 +1,5 @@
 import React from 'react'
 import { CheckOutlined} from "@ant-design/icons";
-import "./Discrible.scss";
 export default function Discrible() {
   return (
     <div className='mt-4'>

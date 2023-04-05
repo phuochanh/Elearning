@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchCourseDetailApi } from "../../../services/course";
-import "./styleIntroduce.scss";
 import { StarFilled } from "@ant-design/icons";
 
 export default function DetailIntroduce() {

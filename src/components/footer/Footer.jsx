@@ -5,7 +5,6 @@ import {
   HomeOutlined,
   RightOutlined,
 } from "@ant-design/icons";
-import "./style.scss";
 import Register from "./components/Register";
 
 export default function Footer() {

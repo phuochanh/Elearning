@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUserInfoAction } from "../../store/actions/userAction";
 import Swal from "sweetalert2";
 import "../use-form/styleUserForm.scss";
-import "./styleLogin.scss"
+
 
 export default function Login() {
   const dispatch = useDispatch();

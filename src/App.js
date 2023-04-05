@@ -1,4 +1,5 @@
 import './App.css';
+import "../src/styles/style.scss";
 import { BrowserRouter } from 'react-router-dom';
 import Router from "./routes/Router"
 import { LoadingProvider } from './contexts/loading/LoadingContext';

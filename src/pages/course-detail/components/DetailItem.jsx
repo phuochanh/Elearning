@@ -1,7 +1,6 @@
 import React from "react";
 import { CaretRightFilled, FieldTimeOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-import "./detailItem.scss";
 export default function DetailItem() {
   return (
     <div className="mt-5">

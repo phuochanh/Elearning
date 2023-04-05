@@ -1,5 +1,4 @@
 import React from "react";
-import "./CourseDetailPage.scss";
 import DetailItem from "./components/DetailItem";
 import Discrible from "./components/Discrible";
 import DetailRegister from "./components/DetailRegister";

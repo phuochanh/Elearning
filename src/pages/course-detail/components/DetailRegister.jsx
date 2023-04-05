@@ -8,7 +8,6 @@ import {
   fetchRegisterCourseApi,
   fetchtestApi,
 } from "../../../services/course";
-import "./style.scss";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 
